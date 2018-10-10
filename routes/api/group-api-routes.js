@@ -1,9 +1,10 @@
-//requiring groups and services models
+//Requireing  models
+var db = require("../../models");
 
 //Routes for grouped services
 
 //===================================
-module.export = function(app) {
+module.exports = function(app) {
     // Get route for getting all of the groups
     app.get("/api/groups/", function(req, res) {
         db.Group.findAll({})
@@ -24,7 +25,7 @@ module.export = function(app) {
             })
     });
 
-    //get route for saving a new group
+    //Post route for saving a new group
     app.post("./api/groups", function(req, res) {
         console.log(req.body);
         db.Group.create({

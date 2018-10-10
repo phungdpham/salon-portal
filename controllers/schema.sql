@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS `gosalon`;
-CREATE DATABASE `gosalon`;
+DROP DATABASE IF EXISTS `salon_portal`;
+CREATE DATABASE `salon_portal`;

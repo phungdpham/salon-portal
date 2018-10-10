@@ -1,23 +1,27 @@
 module.exports = function(sequelize, DataTypes) {
-    var Appointment = sequelize.define("Appointments", {
+    var Appointment = sequelize.define("Appointment", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
 
         },
         phoneNum: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: 10
+                len: [10]
             }
         },
+        selectService: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         selectDate: {
-            type: Datatypes.DATEONLY,
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
         selectTime: {
-            type: Datypes.Time,
+            type: DataTypes.TIME,
             allowNull: false
         }
     });

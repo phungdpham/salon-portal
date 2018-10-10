@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const mongoose = require("mongoose");
-const routes = require("./routes/api");
+const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -15,11 +15,6 @@ app.use(bodyParser.json());
 //Static diretory
 app.use(express.static("public"));
 
-// //Routes
-// //============================================
-// require("./routes/api/group-api-routes.js")(app);
-// require("./routes/api/service-api-routes.js")(app);
-// require("./routes/api/html-routes.js")(app);
 
 
 // Serve up static assets (usually on heroku)
@@ -36,3 +31,10 @@ db.sequelize.sync({ force: true }).then(function() {
   });
 });
 
+
+
+// //Routes
+// //============================================
+// require("./routes/api/group-api-routes.js")(app);
+// require("./routes/api/service-api-routes.js")(app);
+// require("./routes/api/html-routes.js")(app);
