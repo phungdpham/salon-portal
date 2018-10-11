@@ -40,7 +40,7 @@ module.exports = function(app) {
     //Post route for saving a new service
     app.post("/api/services", function(req, res) {
         db.Service.create({
-            name: req.body.name,
+            serviceName: req.body.serviceName,
             price: req.body.price,
             group: req.body.group
         }).

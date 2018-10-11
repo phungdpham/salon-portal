@@ -18,7 +18,7 @@ class AddService extends Component {
     loadServices = () => {
         API.getServices()
             .then(res =>
-                this.setState({ serviceName: res.data, price: "", groupName: res.data, description: ""})
+                this.setState({ serviceName: res.data, price: res.data, groupName: res.data, description: res.data})
                 )
                 .catch(err => console.log(err));
     }
@@ -32,7 +32,7 @@ class AddService extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.erviceName && this.state.price && this.state.groupName) {
+        if (this.state.serviceName && this.state.price && this.state.groupName) {
             API.saveService({
                 serviceName: this.state.serviceName,
                 price: this.state.price,

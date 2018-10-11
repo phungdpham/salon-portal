@@ -29,8 +29,7 @@ module.exports = function(app) {
     app.post("./api/groups", function(req, res) {
         console.log(req.body);
         db.Group.create({
-            name: req.body.title,
-            body: req.body.body,
+            groupName: req.body.groupName
         })
             .then(function(dbGroup) {
                 res.json(dbGroup)

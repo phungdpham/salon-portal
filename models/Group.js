@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var Group = sequelize.define("Group", {
-        name: DataTypes.STRING
+        nameGroup: DataTypes.STRING
     });
 
     //Associating Groups with list of services
