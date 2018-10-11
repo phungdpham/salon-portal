@@ -4,8 +4,16 @@ var db = require("../../models");
 // Routes
 //====================================
 module.exports = function(app) {
-    //Get route for getting all of the services
+    //Get route for getting all services
     app.get("/api/services", function(req, res) {
+        db.Service.findAll({})
+            .then(function(dbService) {
+                res.json(dbService);
+            })
+    });
+
+    //Get route for getting all services by group id
+    app.get("/api/groupedservices", function(req, res) {
         var query = {};
         if (req.query.group_id) {
             query.GroupId = req.query.group_id;

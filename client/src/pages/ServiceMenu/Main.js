@@ -5,29 +5,26 @@ import AddGroup from "./AddGroup";
 import { Form, Input, TextArea, FormBtn } from "../../components/Form";
 import Wrapper from "../../components/Wrapper";
 import AddService from "./AddService";
+import { PanelGroup, Panel } from "../../components/Panel";
+import ServiceList from "./ServiceList";
 
 
 const ServiceMenu = () => (
     <Container fluid>
         <Row>
-            <Col size="md-6">
-                <Card>
-                </Card>
+            <Col size="md-8">
+                <PanelGroup>
+                    <h1>Salon Service Menu</h1>
+                   <ServiceList />
+                </PanelGroup>
             </Col>
-            <Col size="md-6">
-                <Card>
-                    <CardTitle><h3>New Group</h3></CardTitle>
-                    <CardBody>
-                        <AddGroup />
-                    </CardBody>
-                </Card>
-                <Card>
-                    <CardTitle><h3>New Service</h3></CardTitle>
-
-                    <CardBody>
+            <Col size="md-4">
+                {/* <PanelGroup> */}
+                    <Panel>
                         <AddService />
-                    </CardBody>
-                </Card>
+                        <AddGroup />
+                    </Panel>
+                {/* </PanelGroup> */}
             </Col>
         </Row>
 

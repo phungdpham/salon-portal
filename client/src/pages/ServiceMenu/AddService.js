@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Input, Select, FormBtn, TextArea } from "../../components/Form";
 import API from "../../utils/API";
+import { Card, CardTitle, CardBody } from "../../components/Card";
 
 class AddService extends Component {
     state = {
@@ -9,6 +10,18 @@ class AddService extends Component {
         groupName: [],
         description: ""
     };
+
+    componentDidMount() {
+        this.loadServices();
+    }
+
+    loadServices = () => {
+        API.getServices()
+            .then(res =>
+                this.setState({ serviceName: res.data, price: "", groupName: res.data, description: ""})
+                )
+                .catch(err => console.log(err));
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -23,9 +36,10 @@ class AddService extends Component {
             API.saveService({
                 serviceName: this.state.serviceName,
                 price: this.state.price,
-                groupName: this.state.price,
+                groupName: this.state.groupName,
                 description: this.state.description
             })
+                .then(res => this.loadServices())
                 .catch(err => console.log(err));
         }
     };
@@ -33,34 +47,41 @@ class AddService extends Component {
     render() {
         return (
             <form>
-                <Input
-                    value={this.state.serviceName}
-                    onChange={this.handleInputChange}
-                    name="serviceName"
-                    placeholder="Sevice Name"
-                />
-                <Input
-                    value={this.state.serviceName}
-                    onChange={this.handleInputChange}
-                    name="price"
-                    placeholder="Price"
-                />
-                <Select
-                    value={this.state.serviceName}
-                    onChange={this.handleInputChange}
-                    name="price"
-                    placeholder="Price"
-                />
-                <TextArea
-                    value={this.state.description}
-                    onChange={this.handleInputChange}
-                    name="description"
-                    placeholder="Add Service Descripton (optional)"
-                />
-                <FormBtn
-                    disable={!(this.state.serviceName) && !(this.state.price) && !(this.state.groupName)}
-                    onClick={this.handleFormSubmit}
-                />
+                <Card>
+                    <CardTitle>Add New Service</CardTitle>
+                    <CardBody>
+                        <Input
+                            value={this.state.serviceName}
+                            onChange={this.handleInputChange}
+                            name="serviceName"
+                            placeholder="Sevice Name"
+                        />
+                        <Input
+                            value={this.state.serviceName}
+                            onChange={this.handleInputChange}
+                            name="price"
+                            placeholder="Price"
+                        />
+                        <Select
+                            value={this.state.serviceName}
+                            onChange={this.handleInputChange}
+                            name="price"
+                            placeholder="Price"
+                        />
+                        <TextArea
+                            value={this.state.description}
+                            onChange={this.handleInputChange}
+                            name="description"
+                            placeholder="Add Service Descripton (optional)"
+                        />
+                        <FormBtn
+                            disable={!(this.state.serviceName) && !(this.state.price) && !(this.state.groupName)}
+                            onClick={this.handleFormSubmit}
+                        >
+                            Add Service
+                        </FormBtn>
+                    </CardBody>
+                </Card>
 
             </form>
         )

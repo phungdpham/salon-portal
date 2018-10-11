@@ -47,9 +47,14 @@ export default {
     },
     //Service API
     //==================================================
+
     //get all services
     getServices: function() {
         return axios.get("/api/services");
+    },
+    //get all grouped services
+    getGroupedServices: function(groupId) {
+        return axios.get("/api/groupedservices" + groupId);
     },
     //get the service with a given id
     getService: function(id) {
