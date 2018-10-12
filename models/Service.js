@@ -2,11 +2,12 @@ module.exports = function(sequelize, DataTypes) {
     var Service = sequelize.define("Service", {
         serviceName: {
             type: DataTypes.STRING,
-            allowNull: false,
-
+            allowNull: false
         },
-        price: DataTypes.DECIMAL,
-        allowNull: false,
+        price:{ 
+            type: DataTypes.DECIMAL,
+            allowNull: false 
+        }
     });
 
     //Relationship with Group: GroupedServices belongs to Group

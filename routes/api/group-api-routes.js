@@ -1,61 +1,18 @@
 //Requireing  models
-var db = require("../../models");
+const router = require("express").Router();
+const groupsController = require("../../controllers/groupsController");
 
-//Routes for grouped services
 
 //===================================
-module.exports = function(app) {
-    // Get route for getting all of the groups
-    app.get("/api/groups/", function(req, res) {
-        db.Group.findAll({})
-            .then(function(dbGroup) {
-                res.json(dbGroup);
-            });
-    });
+    //Matches with "/api/groups"
+    router.route("/")
+        // .get(groupsController.findAll)
+        .post(groupsController.create);
 
-    //get route for retrieving a single group
-    app.get("./api/groups/:id", function(req, res) {
-        db.Group.findOne({
-            where: {
-                id: req.params.id
-            }
-        })
-            .then(function(dbGroup) {
-                res.json(dbGroup)
-            })
-    });
+    //Matches with "/api/groups/:id"
+    router.route("/:id")
+        .get(groupsController.findById)
+        .put(groupsController.update)
+        .delete(groupsController.remove);
 
-    //Post route for saving a new group
-    app.post("./api/groups", function(req, res) {
-        console.log(req.body);
-        db.Group.create({
-            groupName: req.body.groupName
-        })
-            .then(function(dbGroup) {
-                res.json(dbGroup)
-            })
-    });
-
-    //get route for deleting a single group
-    group.delete("./api/groups/:id", function(req, res) {
-        db.Group.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-            .then(function(dbGroup) {
-                res.json(dbGroup)
-            })
-    });
-    //get route for updating group group
-    group.put("./api/groups", function(req, res) {
-        db.Group.update({
-            where: {
-                id: req.body.id
-            }
-        })
-            .then(function(dbGroup) {
-                res.json(dbGroup)
-            })
-    });
-};
+module.exports = router;

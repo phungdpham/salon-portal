@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export default {
-    //Groups API
-    //==================================================
     //get all appointment
     getAppointments: function() {
         return axios.get("/api/appointments");
@@ -39,6 +37,8 @@ export default {
     },
     //Save a group to the database
     saveGroup: function(groupData) {
+        console.log("am I happening?")
+        console.log(groupData)
         return axios.post("/api/groups", groupData)
     },
     //Update a group

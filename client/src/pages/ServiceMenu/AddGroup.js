@@ -5,7 +5,8 @@ import { Card, CardTitle, CardBody } from "../../components/Card";
 
 class AddGroup extends Component {
     state = {
-        groupName: []
+        groupName: [],
+        newGroup:""
     };
 
     componentDidMount() {
@@ -13,10 +14,12 @@ class AddGroup extends Component {
     }
 
     loadGroups = () => {
+        console.log("hitting this")
         API.getGroups()
-            .then(res =>
+            .then(res =>{
+                console.log(res)
                 this.setState({ groupName: res.data })
-            )
+            })
             .catch(err => console.log(err));
     };
 
@@ -29,11 +32,12 @@ class AddGroup extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.groupName) {
+        const grouping = this.state.newGroup
+        if (this.state.newGroup) {
+            console.log("happening")
             API.saveGroup({
-                groupName: this.state.groupName
+                groupName: grouping
             })
-                .then(res => this.loadGroups())
                 .catch(err => console.log(err));
         }
     };
@@ -45,9 +49,9 @@ class AddGroup extends Component {
                     <CardTitle>Add New Group</CardTitle>
                     <CardBody>
                             <Input
-                                value={this.state.groupName}
+                                value={this.state.newGroup}
                                 onChange={this.handleInputChange}
-                                name="groupName"
+                                name="newGroup"
                                 placeholder="Group Name"
                             />
                             <FormBtn
