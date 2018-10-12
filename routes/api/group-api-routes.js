@@ -6,7 +6,7 @@ const groupsController = require("../../controllers/groupsController");
 //===================================
     //Matches with "/api/groups"
     router.route("/")
-        // .get(groupsController.findAll)
+        .get(groupsController.findAll)
         .post(groupsController.create);
 
     //Matches with "/api/groups/:id"

@@ -37,7 +37,7 @@ export default {
     },
     //Save a group to the database
     saveGroup: function(groupData) {
-        console.log("am I happening?")
+        console.log("API is fine!!!")
         console.log(groupData)
         return axios.post("/api/groups", groupData)
     },

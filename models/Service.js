@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         price:{ 
             type: DataTypes.DECIMAL,
             allowNull: false 
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 

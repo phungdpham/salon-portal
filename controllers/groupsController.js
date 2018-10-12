@@ -12,10 +12,8 @@ module.exports = {
     },
     findById: function(req, res) {
         db.Group
-            .findOne({
-                where: {
-                    id: req.params.id
-                }
+            .findOne({ 
+                where: { id: req.params.id }
             })
             .then(function(dbGroup) {
                 res.json(dbGroup)
@@ -23,21 +21,16 @@ module.exports = {
     },
     create: function(req, res) {
         console.log("in the create");
-        // const groupName=req.body;
-        // db.Group
-        //     .create({
-        //         groupName
-        //     })
-        //     .then(function(dbGroup) {
-        //         res.json(dbGroup)
-        //     })
+        db.Group
+            .create(req.body)
+            .then(function(dbGroup) {
+                res.json(dbGroup)
+            })
     },
     update: function(req, res) {
         db.Group
             .destroy({
-                where: {
-                    id: req.params.id
-                }
+                where: { id: req.params.id }
             })
             .then(function(dbGroup) {
                     res.json(dbGroup)

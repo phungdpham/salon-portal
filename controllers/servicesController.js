@@ -40,7 +40,8 @@ module.exports = {
             .create({
                 serviceName: req.body.serviceName,
                 price: req.body.price,
-                group: req.body.group
+                group: req.body.group,
+                description: req.body.group
             })
             .then(function(dbService) {
                 res.json(dbService);

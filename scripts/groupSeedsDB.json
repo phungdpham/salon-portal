@@ -1,0 +1,21 @@
+[
+    {   
+        "id":2,
+        "groupName":"Nails Enhancements",
+        "createdAt":"2018-10-12T19:34:47.000Z",
+        "updatedAt":"2018-10-12T19:34:47.000Z"},
+    {
+        "id":3,"groupName":"Manicure",
+        "createdAt":"2018-10-12T19:34:52.000Z",
+        "updatedAt":"2018-10-12T19:34:52.000Z"},
+    {
+        "id":4,
+        "groupName":"Pedicure",
+        "createdAt":"2018-10-12T19:34:59.000Z",
+        "updatedAt":"2018-10-12T19:34:59.000Z"},
+    {
+        "id":5,"groupName":"Design",
+        "createdAt":"2018-10-12T19:35:06.000Z",
+        "updatedAt":"2018-10-12T19:35:06.000Z"
+    }
+]

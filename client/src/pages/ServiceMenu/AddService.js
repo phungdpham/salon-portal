@@ -1,28 +1,29 @@
 import React, { Component } from "react";
-import { Input, Select, FormBtn, TextArea } from "../../components/Form";
+import { Input, Select, Option, FormBtn, TextArea } from "../../components/Form";
 import API from "../../utils/API";
 import { Card, CardTitle, CardBody } from "../../components/Card";
 
 class AddService extends Component {
     state = {
-        serviceName: [],
+        groupSelect: [],
+        serviceName: "",
         price: "",
-        groupName: [],
         description: ""
     };
 
     componentDidMount() {
-        this.loadServices();
+        this.loadGroups();
     }
 
-    loadServices = () => {
-        API.getServices()
-            .then(res =>
-                this.setState({ serviceName: res.data, price: res.data, groupName: res.data, description: res.data})
-                )
-                .catch(err => console.log(err));
+    loadGroups = () => {
+        API.getGroups()
+            .then(res => {
+                console.log(res)
+                this.setState({ groupSelect: res.data})
+            })
+            .catch(err => console.log(err));
     }
-
+    
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -33,13 +34,13 @@ class AddService extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.serviceName && this.state.price && this.state.groupName) {
+            console.log("handleFormSubmit works fine");
             API.saveService({
                 serviceName: this.state.serviceName,
                 price: this.state.price,
                 groupName: this.state.groupName,
                 description: this.state.description
             })
-                .then(res => this.loadServices())
                 .catch(err => console.log(err));
         }
     };
@@ -57,22 +58,23 @@ class AddService extends Component {
                             placeholder="Sevice Name"
                         />
                         <Input
-                            value={this.state.serviceName}
+                            value={this.state.price}
                             onChange={this.handleInputChange}
                             name="price"
                             placeholder="Price"
                         />
-                        <Select
-                            value={this.state.serviceName}
-                            onChange={this.handleInputChange}
-                            name="price"
-                            placeholder="Price"
-                        />
+                        <Select>
+                            {this.state.groupSelect.map(group => (
+                                <Option key={group._id}>
+                                    {group.groupName}
+                                </Option>
+                            ))}
+                        </Select>
                         <TextArea
                             value={this.state.description}
                             onChange={this.handleInputChange}
                             name="description"
-                            placeholder="Add Service Descripton (optional)"
+                            placeholder="Service Descripton (optional)"
                         />
                         <FormBtn
                             disable={!(this.state.serviceName) && !(this.state.price) && !(this.state.groupName)}

@@ -5,23 +5,23 @@ import { Card, CardTitle, CardBody } from "../../components/Card";
 
 class AddGroup extends Component {
     state = {
-        groupName: [],
-        newGroup:""
+        // groups: [],
+        groupName: ""
     };
 
-    componentDidMount() {
-        this.loadGroups();
-    }
+    // componentDidMount() {
+    //     this.loadGroups();
+    // }
 
-    loadGroups = () => {
-        console.log("hitting this")
-        API.getGroups()
-            .then(res =>{
-                console.log(res)
-                this.setState({ groupName: res.data })
-            })
-            .catch(err => console.log(err));
-    };
+    // loadGroups = () => {
+    //     console.log("hitting this")
+    //     API.getGroups()
+    //         .then(res =>{
+    //             console.log(res)
+    //             this.setState({ groups: res.data, groupName: "" })
+    //         })
+    //         .catch(err => console.log(err));
+    // };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -32,12 +32,12 @@ class AddGroup extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const grouping = this.state.newGroup
-        if (this.state.newGroup) {
-            console.log("happening")
+        if (this.state.groupName) {
+            console.log("HandleFormSubmit works")
             API.saveGroup({
-                groupName: grouping
+                groupName: this.state.groupName
             })
+                // .then(res => this.loadGroups)
                 .catch(err => console.log(err));
         }
     };
@@ -49,9 +49,9 @@ class AddGroup extends Component {
                     <CardTitle>Add New Group</CardTitle>
                     <CardBody>
                             <Input
-                                value={this.state.newGroup}
+                                value={this.state.groupName}
                                 onChange={this.handleInputChange}
-                                name="newGroup"
+                                name="groupName"
                                 placeholder="Group Name"
                             />
                             <FormBtn
