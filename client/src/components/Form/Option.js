@@ -1,5 +1,7 @@
 import React from "react";
 
 export const Option = props => (
-    <option> { props.children }</option>
+    <option name={props.name}> 
+        { props.children }
+    </option>
 );

@@ -1,11 +1,11 @@
 import React from "react";
 
-export const Select = ({ children}) => {
+export const Select = (props) => {
     return (
         <div className="input-group">
-            <select className="custom-select">
+            <select className="custom-select" name={props.name}>
                 {/* <option selected>Choose Group</option> */}
-                {children}
+                {props.children}
             </select>
         </div>
     );
