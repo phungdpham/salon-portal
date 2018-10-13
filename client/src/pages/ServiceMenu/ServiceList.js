@@ -1,42 +1,64 @@
 import React, { Component } from "react";
 import { Card, CardTitle, CardBody } from "../../components/Card";
 import API from "../../utils/API";
+import { Panel, PanelHeading, PanelBody } from "../../components/Panel";
 
 
 class ServiceList extends Component {
     state = {
-        // groupName: [],
+        groups: [],
         services: {}
     };
 
     componentDidMount() {
-        // API.getGroups()
-        //     .then(res =>
-        //         this.setState( { groupName: res.data})
-        //     )
-        //     .catch(err => console.log(err));
+        this.loadServices();
+    }
 
+    // loadGroups = () => {
+    //     API.getGroups()
+    //         .then(res =>
+    //             this.setState( { groups: res.data})
+    //         )
+    //         .catch(err => console.log(err));
+    // }
+
+    loadServices() {
         API.getServices()
-            .then(res => this.setState({ serviceName: res.data, price: res.data, groupName: res.data, description: res.data })
+            .then(res => this.setState({ services: res.data })
             )
             .catch(err => console.log(err));
     };
 
     render() {
+        
+        //Grouping all services by GroupId
+        const groupedServices = (services, GroupId) => {
+            return services.reduce( (byGroup, obj) => {
+                const ListofService = obj[GroupId];
+                if (!byGroup[ListofService]) {
+                    byGroup[ListofService] = []
+                }
+                byGroup[ListofService].push(obj);
+                return byGroup;
+            }, {});
+        };
+        console.log(groupedServices)
+
+
         return (
-            <Card>
-                <CardTitle />
-                <CardBody>
-                    <ul className="list-group">
-                        {/* {services.map(service => (
-                            <li className="list-group-item" key={service.id}>
-                                <span>{service.serviceName}</span>
-                                <span>{service.price}</span>
-                            </li>
-                        ))} */}
-                    </ul>
-                </CardBody>
-            </Card>
+            <Panel>
+                {/* {this.state.groups.map(group => (
+                    <PanelHeading key={service._id}>
+                        <strong>
+                            {services.GroupId}
+                        </strong> 
+                    </PanelHeading>
+                    <PanelBody>
+
+                    </PanelBody>
+                ))} */}
+
+            </Panel>
         )
     };
 }

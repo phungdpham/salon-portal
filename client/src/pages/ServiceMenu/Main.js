@@ -19,12 +19,10 @@ const ServiceMenu = () => (
                 </PanelGroup>
             </Col>
             <Col size="md-4">
-                {/* <PanelGroup> */}
-                    <Panel>
-                        <AddService />
-                        <AddGroup />
-                    </Panel>
-                {/* </PanelGroup> */}
+                <Panel>
+                    <AddService />
+                    <AddGroup />
+                </Panel>
             </Col>
         </Row>
 

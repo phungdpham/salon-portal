@@ -9,19 +9,19 @@ class AddGroup extends Component {
         groupName: ""
     };
 
-    // componentDidMount() {
-    //     this.loadGroups();
-    // }
+    componentDidMount() {
+        this.loadGroups();
+    }
 
-    // loadGroups = () => {
-    //     console.log("hitting this")
-    //     API.getGroups()
-    //         .then(res =>{
-    //             console.log(res)
-    //             this.setState({ groups: res.data, groupName: "" })
-    //         })
-    //         .catch(err => console.log(err));
-    // };
+    loadGroups = () => {
+        console.log("hitting this")
+        API.getGroups()
+            .then(res =>{
+                console.log(res)
+                this.setState({ groups: res.data, groupName: "" })
+            })
+            .catch(err => console.log(err));
+    };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -37,14 +37,13 @@ class AddGroup extends Component {
             API.saveGroup({
                 groupName: this.state.groupName
             })
-                // .then(res => this.loadGroups)
+                .then(res => this.loadGroups())
                 .catch(err => console.log(err));
-        }
+        };
     };
 
     render() {
         return (
-            <form>
                 <Card>
                     <CardTitle>Add New Group</CardTitle>
                     <CardBody>
@@ -62,7 +61,6 @@ class AddGroup extends Component {
                             </FormBtn>
                     </CardBody>
                 </Card>
-            </form>
         )
     }
 }

@@ -1,11 +1,17 @@
 const db = require("../models");
+const Sequelize = require("sequelize");
 
-//Defining methods for groupsController
+//Defining methods for servicesController
 
 module.exports = {
     findAll: function(req, res) {
         db.Service
-            .findAll({})
+            .findAll({
+                include: [{
+                    model: db.Group,
+                    where: { id: Sequelize.col('GroupId')}
+                }]
+            })
             .then(function(dbService) {
                 res.json(dbService);
             });
